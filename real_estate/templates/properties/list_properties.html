@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <div class="listing">
+        {% for property in properties%}
+            <div class="property-item">
+                <h2>{{ property.title }}</h2>
+                <p>{{ property.description}}</p>
+                <p>{{ property.address }}</p>
+                <h4>{{ property.price}}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="map-container">
+        <div class="map" id="map"></div>
+    </div>
+</div>
+
+{% endblock content %}

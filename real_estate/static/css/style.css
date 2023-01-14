@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+}
+
+.custom-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.map {
+    height: 100%;
+}
+
+.map-container {
+    height: 100%;
+}
+
+.map-container {
+    height: 100vh;
+    width: 50%;
+    position: fixed;
+    right: 0;
+    top: 0;
+}
+
+.listing {
+    overflow-y: scroll;
+    padding: 5px 1em;
+}
