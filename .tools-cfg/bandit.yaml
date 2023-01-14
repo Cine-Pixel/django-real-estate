@@ -1,2 +1,3 @@
+exclude_dirs: ["*/settings/dev.py"]
 assert_used:
-  skips: ["*/test_*.py", "*/test_*.py"]
+  skips: ["*/test_*.py", "*/test_*.py", "*/settings/dev.py"]
