@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 
 
 class Property(models.Model):
@@ -7,6 +7,7 @@ class Property(models.Model):
     Stores a single property entry, related to :model:`auth.User`.
 
     """
+
     title = models.CharField(max_length=300)
     description = models.CharField(max_length=500)
     price = models.DecimalField(max_digits=5, decimal_places=2)

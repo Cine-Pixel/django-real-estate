@@ -1,8 +1,7 @@
-from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
-
-from properties.models import Property
+from django.shortcuts import redirect, render
 from properties.forms import PropertyForm
+from properties.models import Property
 
 
 def create_property(request: HttpRequest) -> HttpResponse:
@@ -49,9 +48,7 @@ def list_property(request: HttpRequest) -> HttpResponse:
 
     """
     properties = Property.objects.all()
-    context = {
-        "properties": properties
-    }
+    context = {"properties": properties}
     return render(request, "properties/list_properties.html", context=context)
 
 
@@ -72,7 +69,5 @@ def view_property(request: HttpRequest, pk: int) -> HttpResponse:
     property = Property.objects.filter(id=pk).first()
     if property is None:
         return HttpResponse("<h1>Property not found</h1>")
-    context = {
-        "property": property
-    }
+    context = {"property": property}
     return render(request, "properties/view_property.html", context=context)
