@@ -15,5 +15,7 @@ exclude = '''
   | build
   | dist
   | migrations
+  | static
+  | templates
 )/
 '''
