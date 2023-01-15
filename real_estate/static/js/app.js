@@ -3,13 +3,16 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
+
+var marker = L.marker([0, 0]).addTo(map);
 map.on("click", onMapClick);
 
+
 function onMapClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString())
-        .openOn(map);
+    const lat = e.latlng.lat;
+    const lng = e.latlng.lng;
+    const address = document.getElementById("address").value;
+    selectAddress(lat, lng, address);
 }
 
 function showAddress(addresses) {
@@ -18,7 +21,7 @@ function showAddress(addresses) {
     if (addresses.length > 0) {
         addresses.forEach(element => {
             addressHtml = `
-            <div class="results" onClick="selectAddress(${element.lon}, ${element.lat}, '${element.display_name}')">
+            <div class="results" onClick="selectAddress(${element.lat}, ${element.lon}, '${element.display_name}')">
                 ${element.display_name}
             </div>
             `
@@ -30,15 +33,19 @@ function showAddress(addresses) {
     }
 }
 
-function selectAddress(lon, lat, adr) {
+
+function selectAddress(lat, lng, adr) {
     const address = document.getElementById("id_address");
     const longitude = document.getElementById("id_longitude");
     const latitude = document.getElementById("id_latitude");
+    map.flyTo([lat, lng], 16);
+    marker.setLatLng([lat, lng]);
 
     address.value = adr;
-    longitude.value = lon;
+    longitude.value = lng;
     latitude.value = lat;
 }
+
 
 function findAddress() {
     const address = document.querySelector("#address");
