@@ -22,20 +22,6 @@
 
 {% block scripts %}
 <script>
-    function draw_properties_on_map(properties) {
-        properties.forEach(property => {
-            pop = L.popup({
-                closeOnClick: true
-            }).setContent(`<h3>${property.title}</h3>`)
-            marker = L.marker([property.latitude, property.longitude]).addTo(map);
-        })
-    }
-    function fetch_properties() {
-        const url = "/api/properties";
-        fetch(url)
-            .then(response => response.json())
-            .then(data => draw_properties_on_map(data))
-    }
     fetch_properties()
 </script>
 {% endblock scripts %}
