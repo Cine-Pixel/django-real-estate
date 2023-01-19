@@ -6,7 +6,7 @@
     <div class="listing">
         {% for property in properties%}
             <div class="property-item">
-                <h2>{{ property.title }}</h2>
+                <h2><a href="{% url 'view-property' pk=property.id %}">{{ property.title }}</a></h2>
                 <p>{{ property.description}}</p>
                 <p>{{ property.address }}</p>
                 <h4>{{ property.price}}</p>
@@ -19,3 +19,23 @@
 </div>
 
 {% endblock content %}
+
+{% block scripts %}
+<script>
+    function draw_properties_on_map(properties) {
+        properties.forEach(property => {
+            pop = L.popup({
+                closeOnClick: true
+            }).setContent(`<h3>${property.title}</h3>`)
+            marker = L.marker([property.latitude, property.longitude]).addTo(map);
+        })
+    }
+    function fetch_properties() {
+        const url = "/api/properties";
+        fetch(url)
+            .then(response => response.json())
+            .then(data => draw_properties_on_map(data))
+    }
+    fetch_properties()
+</script>
+{% endblock scripts %}
