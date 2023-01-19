@@ -22,3 +22,12 @@
 </div>
 
 {% endblock content %}
+
+{% block scripts %}
+
+<script>
+    var marker = L.marker([0, 0]).addTo(map);
+    map.on("click", onMapClick);
+</script>
+
+{% endblock scripts %}

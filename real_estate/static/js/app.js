@@ -4,9 +4,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-var marker = L.marker([0, 0]).addTo(map);
-map.on("click", onMapClick);
-
 
 function onMapClick(e) {
     const lat = e.latlng.lat;
@@ -55,4 +52,23 @@ function findAddress() {
         .then(response => response.json())
         .then(data => showAddress(data))
         .catch(err => console.log(err));
+}
+
+
+function draw_properties_on_map(properties) {
+    properties.forEach(property => {
+        const pop = L.popup({
+            closeOnClick: true
+        }).setContent(`<h3>${property.title}</h3>`);
+
+        const marker = L.marker([property.latitude, property.longitude]).addTo(map).bindPopup(pop);
+    })
+}
+
+
+function fetch_properties() {
+    const url = "/api/properties";
+    fetch(url)
+        .then(response => response.json())
+        .then(data => draw_properties_on_map(data))
 }
