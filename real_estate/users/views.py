@@ -14,7 +14,7 @@ def login(request: HttpRequest) -> HttpResponse:
         if user is not None:
             auth.login(request, user)
             messages.success(request, "You are now logged in")
-            return redirect("dashboard")
+            return redirect("list-property")
         else:
             messages.error(request, "Invalid credentials")
             return redirect("login")
@@ -49,7 +49,7 @@ def register(request: HttpRequest) -> HttpResponse:
                     )
                     auth.login(request, user)
                     messages.success(request, "You are now logged in")
-                    return redirect("index")
+                    return redirect("list-property")
         else:
             messages.error(request, "Passwords do not match")
             return redirect("register")
@@ -61,6 +61,6 @@ def logout(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         auth.logout(request)
         messages.success(request, "You are now logged out")
-        return redirect("index")
+        return redirect("list-property")
     else:
         return HttpResponse("<h1>405 Not allowed</h1>")
