@@ -8,7 +8,8 @@
         <div class="listing-grid">
             {% for property in properties %}
                 <div class="property-item">
-                    <img src="https://www.mydomaine.com/thmb/yE8D0r4ov5b3VKlF6Kshd9lrR5c=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/binary-4--583f06853df78c6f6a9e0b7a.jpeg" alt="">
+
+                    <img src="media/{{ property.image_set.all.0.image }}" alt="">
                     <div class="property-item-title">
                         <h2><a href="{% url 'view-property' pk=property.id %}">{{ property.title }}</a></h2>
                         <span>Monthly Fee</span>

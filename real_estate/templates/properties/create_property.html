@@ -4,7 +4,7 @@
 
 <div class="custom-container">
     <div>
-        <form class="property-form" action="" method="POST">
+        <form class="property-form" action="" method="POST" enctype="multipart/form-data">
             {% if form.errors %}
                 <div class="alert alert-danger">
                     {{ form.errors }}
@@ -129,7 +129,7 @@
                 <div class="upload__btn-box">
                     <label class="upload__btn">
                     <p>Upload images</p>
-                    <input type="file" multiple="" data-max_length="20" class="upload__inputfile">
+                    <input type="file" name="{{ image_form.image.name }}" id="{{ image_form.image.id_for_label }}" multiple data-max_length="20" class="upload__inputfile">
                     </label>
                 </div>
                 <div class="upload__img-wrap"></div>
