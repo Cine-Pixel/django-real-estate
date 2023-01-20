@@ -1,5 +1,6 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
+from django.contrib import messages
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -22,6 +23,9 @@ def create_property(request: HttpRequest) -> HttpResponse:
     :template:`properties/create_property.html`
 
     """
+    if not request.user.is_authenticated:
+        messages.error(request, "You need to be authenticated to add your property!")
+        return redirect("login")
     if request.method == "POST":
         form = PropertyForm(request.POST)
         if form.is_valid():
@@ -29,6 +33,11 @@ def create_property(request: HttpRequest) -> HttpResponse:
             property.owner = request.user
             property.save()
             return redirect(list_property)
+        else:
+            context = {
+                "form": form,
+            }
+            return render(request, "properties/create_property.html", context=context)
 
     form = PropertyForm()
     context = {

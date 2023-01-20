@@ -7,3 +7,4 @@ class PropertyForm(forms.ModelForm):
     class Meta:
         model = Property
         fields = "__all__"
+        exclude = ('owner', )
