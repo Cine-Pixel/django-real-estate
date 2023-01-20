@@ -1,6 +1,6 @@
+from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
-from django.contrib import messages
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -29,7 +29,7 @@ def create_property(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         form = PropertyForm(request.POST)
         image_form = ImageForm(request.POST, request.FILES)
-        images = request.FILES.getlist('image')
+        images = request.FILES.getlist("image")
         if form.is_valid():
             property: Property = form.save(commit=False)
             property.owner = request.user
@@ -41,18 +41,12 @@ def create_property(request: HttpRequest) -> HttpResponse:
 
             return redirect(list_property)
         else:
-            context = {
-                "form": form,
-                "image_form": image_form
-            }
+            context = {"form": form, "image_form": image_form}
             return render(request, "properties/create_property.html", context=context)
 
     form = PropertyForm()
     image_form = ImageForm()
-    context = {
-        "form": form,
-        "image_form": image_form
-    }
+    context = {"form": form, "image_form": image_form}
     return render(request, "properties/create_property.html", context=context)
 
 

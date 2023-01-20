@@ -7,13 +7,13 @@ class PropertyForm(forms.ModelForm):
     class Meta:
         model = Property
         fields = "__all__"
-        exclude = ('owner', )
+        exclude = ("owner",)
 
 
 class ImageForm(forms.ModelForm):
     class Meta:
-        model = Image 
-        fields = ['image']
+        model = Image
+        fields = ["image"]
         widgets = {
-            'image': forms.ClearableFileInput(attrs={'multiple': True}),
+            "image": forms.ClearableFileInput(attrs={"multiple": True}),
         }
