@@ -34,9 +34,15 @@
                 <div class="col">
                     <label for="{{ form.address.id_for_label }}">
                         <span>Address <span class="required-mark">*</span></span><br>
-                        {{ form.address }}
+                        <div class="input-with-button">
+                            {{ form.address }} <span onclick="findAddress()"><i class="fa-sharp fa-solid fa-location-dot"></i></span>
+                        </div>
                     </label>
                 </div>
+            </div>
+
+            <div class="property-form-row">
+                <div id="results"></div>
             </div>
 
             <div class="property-form-row">
@@ -142,11 +148,6 @@
     </div>
 
     <div>
-        <input type="text" placeholder="address" id="address">
-        <br>
-        <button onclick="findAddress()">Search</button>
-        <div id="results"></div>
-
         <div id="map" style="height: 90vh;"></div>
     </div>
 </div>
@@ -160,7 +161,7 @@
     map.on("click", onMapClick);
 
     jQuery(document).ready(function () {
-    ImgUpload();
+        ImgUpload();
     });
 
     function ImgUpload() {

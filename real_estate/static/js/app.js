@@ -8,7 +8,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 function onMapClick(e) {
     const lat = e.latlng.lat;
     const lng = e.latlng.lng;
-    const address = document.getElementById("address").value;
+    const address = document.getElementById("id_address").value;
     selectAddress(lat, lng, address);
 }
 
@@ -45,7 +45,7 @@ function selectAddress(lat, lng, adr) {
 
 
 function findAddress() {
-    const address = document.querySelector("#address");
+    const address = document.querySelector("#id_address");
 
     const url = "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" + address.value;
     fetch(url)
