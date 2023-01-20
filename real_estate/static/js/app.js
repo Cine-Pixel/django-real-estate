@@ -72,3 +72,8 @@ function fetch_properties() {
         .then(response => response.json())
         .then(data => draw_properties_on_map(data))
 }
+
+function addMarker(lat, lng) {
+    map.flyTo([lat, lng], 16);
+    marker.setLatLng([lat, lng]);
+}
