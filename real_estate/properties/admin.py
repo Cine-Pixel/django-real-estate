@@ -1,5 +1,6 @@
 from django.contrib import admin
 
-from .models import Property
+from .models import Image, Property
 
 admin.site.register(Property)
+admin.site.register(Image)

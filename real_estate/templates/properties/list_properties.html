@@ -2,20 +2,37 @@
 
 {% block content %}
 
-<div>
-    <div class="listing">
-        {% for property in properties%}
-            <div class="property-item">
-                <h2>{{ property.title }}</h2>
-                <p>{{ property.description}}</p>
-                <p>{{ property.address }}</p>
-                <h4>{{ property.price}}</p>
-            </div>
-        {% endfor %}
+<div class="container">
+    <div class="listing-container">
+        <h1>For Renting</h1>
+        <div class="listing-grid">
+            {% for property in properties %}
+                <div class="property-item">
+
+                    <img src="media/{{ property.image_set.all.0.image }}" alt="">
+                    <div class="property-item-title">
+                        <h2><a href="{% url 'view-property' pk=property.id %}">{{ property.title }}</a></h2>
+                        <span>Monthly Fee</span>
+                    </div>
+                    <div class="property-item-title">
+                        <p>{{ property.description}}</p>
+                        <span class="price">${{ property.price}}</span>
+                    </div>
+                    <p>{{ property.address }}</p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
+
     <div class="map-container">
         <div class="map" id="map"></div>
     </div>
 </div>
 
 {% endblock content %}
+
+{% block scripts %}
+<script>
+    fetch_properties()
+</script>
+{% endblock scripts %}

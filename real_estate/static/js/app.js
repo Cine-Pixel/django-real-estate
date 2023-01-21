@@ -4,14 +4,11 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-var marker = L.marker([0, 0]).addTo(map);
-map.on("click", onMapClick);
-
 
 function onMapClick(e) {
     const lat = e.latlng.lat;
     const lng = e.latlng.lng;
-    const address = document.getElementById("address").value;
+    const address = document.getElementById("id_address").value;
     selectAddress(lat, lng, address);
 }
 
@@ -48,11 +45,66 @@ function selectAddress(lat, lng, adr) {
 
 
 function findAddress() {
-    const address = document.querySelector("#address");
+    const address = document.querySelector("#id_address");
 
     const url = "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" + address.value;
     fetch(url)
         .then(response => response.json())
         .then(data => showAddress(data))
         .catch(err => console.log(err));
+}
+
+
+function draw_properties_on_map(properties) {
+    properties.forEach(property => {
+        const pop = L.popup({
+            closeOnClick: true
+        }).setContent(`<h3>${property.title}</h3>`);
+
+        const marker = L.marker([property.latitude, property.longitude]).addTo(map).bindPopup(pop);
+    })
+}
+
+
+function fetch_properties() {
+    const url = "/api/properties";
+    fetch(url)
+        .then(response => response.json())
+        .then(data => draw_properties_on_map(data))
+}
+
+function addMarker(lat, lng) {
+    map.flyTo([lat, lng], 16);
+    marker.setLatLng([lat, lng]);
+}
+
+
+const getCookie = (name) => {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+function logout() {
+    const url = "/logout/";
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {
+            'csrfmiddlewaretoken': getCookie('csrftoken'),
+        },
+        success: function(response) {
+            location.reload();
+        }
+    });
 }

@@ -25,3 +25,13 @@ class Property(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+
+class Image(models.Model):
+    """
+    Stores images for properties
+
+    """
+
+    property = models.ForeignKey(Property, on_delete=models.CASCADE)
+    image = models.FileField(upload_to="images/", default="images/default.png")
