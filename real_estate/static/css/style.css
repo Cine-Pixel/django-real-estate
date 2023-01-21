@@ -1,10 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
+    font-family: "Inter";
+    background-color: #F3F3F3;
+}
+
+.nav-container {
+    background-color: #FFFFFF;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+}
+
+nav.navbar {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+}
+
+.navbar > .navbar-title {
+    font-size: 1.6em;
+    color: rgba(47, 110, 181, 1);
+}
+
+nav.navbar > * {
+    margin-right: 2em;
+}
+
+div.container {
+    width: 90%;
+    margin: auto;
+}
+div.listing-container > h1 {
+    color: rgba(47, 110, 181, 1);
 }
 
 .custom-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 2em;
+    padding: 10px 20px;
 }
 
 .map {
@@ -12,18 +51,688 @@ body {
 }
 
 .map-container {
-    height: 100%;
-}
-
-.map-container {
-    height: 100vh;
     width: 50%;
+    height: 90%;
     position: fixed;
     right: 0;
-    top: 0;
+    top: 10%; 
 }
 
-.listing {
+.listing-container {
     overflow-y: scroll;
     padding: 5px 1em;
+    width: 50%;
+    background-color: #F3F3F3;
+}
+
+.listing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+div.property-item {
+    padding: 5px;
+    background-color: #fff;
+    border-radius: 1em;
+    color: #2F6EB5;
+    padding: 1em 1em;
+    box-shadow: 0px 4px 4px 0px rgba(47, 110, 181, 0.27);
+}
+
+div.input-with-button {
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    border: 1px solid #97B7DA;
+    border-radius: 9px;
+    padding: .5em;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 0;
+}
+div.input-with-button > span {
+    width: 5%;
+    height: 100%;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 30px;
+    color: rgba(47, 110, 181, 1);
+}
+div.input-with-button > input {
+    outline: none;
+    border: none;
+    margin: 0;
+    width: 95%;
+}
+
+div.property-item > img {
+    width: 100%;
+    height: 250px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+div.property-item > p {
+    margin: 0;
+    padding: 0;
+}
+div.property-item > div > h2 {
+    padding: 0;
+    margin: 0;
+}
+
+div.property-item-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+span.price {
+    color: #D40000;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+div.property-item > div > h2 > a {
+    color: #2F6EB5;
+    text-decoration: none;
+}
+
+.property-form-row > #results {
+    width: 100%;
+}
+
+.property-form-row > #results > .results {
+    padding: 5px;
+    color: rgba(125, 125, 125, 1);
+    cursor: pointer;
+}
+
+.property-form-row > #results > .results:hover {
+    color: rgb(78, 78, 78);
+}
+
+form.property-form {
+    background: #FFFFFF;
+    border: 1px solid rgba(47, 110, 181, 0.5);
+    border-radius: 17px;
+    padding: 3em 20px;
+}
+
+.property-form > .property-form-row{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.property-form > .property-form-row > .col {
+    width: 100%;
+}
+.property-form > .property-form-row > .col-half {
+    width: 50%;
+}
+
+.property-form > .property-form-row > div > label {
+    color: rgba(47, 110, 181, 1);
+    font-weight: bold;
+}
+span.required-mark {
+    color: rgba(212, 0, 0, 1);
+}
+
+.property-form > .property-form-row > div > label > input {
+    width: 100%;
+}
+
+input[type="text"], input[type="number"] {
+    background: #FFFFFF;
+    border: 1px solid #97B7DA;
+    border-radius: 9px;
+    padding: .5em;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+
+/*--------------------------------------------------------------
+Awesome checkbox
+--------------------------------------------------------------*/
+
+.toggler-wrapper {
+	display: block;
+	width: 45px;
+	height: 25px;
+	cursor: pointer;
+	position: relative;
+}
+
+.toggler-wrapper input[type="checkbox"] {
+	display: none;
+}
+
+.toggler-wrapper input[type="checkbox"]:checked+.toggler-slider {
+	background-color: #44cc66;
+}
+
+.toggler-wrapper .toggler-slider {
+	background-color: #ccc;
+	position: absolute;
+	border-radius: 100px;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	-webkit-transition: all 300ms ease;
+	transition: all 300ms ease;
+}
+
+.toggler-wrapper .toggler-knob {
+	position: absolute;
+	-webkit-transition: all 300ms ease;
+	transition: all 300ms ease;
+}
+
+.toggler-wrapper.style-27 {
+	width: 54px;
+	height: 30px;
+}
+
+.toggler-wrapper.style-27 input[type="checkbox"]:checked+.toggler-slider .toggler-knob:before {
+	left: -100%;
+}
+
+.toggler-wrapper.style-27 input[type="checkbox"]:checked+.toggler-slider .toggler-knob:after {
+	right: 3px;
+}
+
+.toggler-wrapper.style-27 .toggler-knob {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.toggler-wrapper.style-27 .toggler-knob:before {
+	content: 'No';
+	position: absolute;
+	width: calc(30px - 6px);
+	height: calc(30px - 6px);
+	border-radius: 50%;
+	left: 3px;
+	top: 3px;
+	background-color: #fff;
+	-webkit-transition: all 300ms ease;
+	transition: all 300ms ease;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	font-size: 75%;
+	font-weight: 500;
+}
+
+.toggler-wrapper.style-27 .toggler-knob:after {
+	content: 'Yes';
+	position: absolute;
+	width: calc(30px - 6px);
+	height: calc(30px - 6px);
+	border-radius: 50%;
+	right: -100%;
+	top: 3px;
+	background-color: #fff;
+	-webkit-transition: all 300ms ease;
+	transition: all 300ms ease;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	font-size: 75%;
+	font-weight: 500;
+}
+
+
+
+/*--------------------------------------------------------------
+Awesome image upload
+--------------------------------------------------------------*/
+
+.upload__box {
+    margin-top: 10px;
+    width: 100%;
+}
+.upload__inputfile{
+    width: .1px;
+    height: .1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.upload__btn {
+    display: inline-block;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    min-width: 116px;
+    transition: all .3s ease;
+    cursor: pointer;
+    background-color: #2F6EB5;
+    border-radius: 10px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.upload__btn:hover {
+    background-color: unset;
+    color: #4045ba;
+    transition: all .3s ease;
+}
+
+.upload__btn-box {
+    margin-bottom: 10px;
+}
+
+.upload__img-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+
+.upload__img-box {
+    width: 200px;
+    padding: 0 10px;
+    margin-bottom: 12px;
+}
+
+.upload__img-close {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-align: center;
+    line-height: 24px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.upload__img-close:after {
+    content: '\2716';
+    font-size: 14px;
+    color: white;
+}
+
+.img-bg {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  padding-bottom: 100%;
+}
+
+
+.detail-container {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 2em;
+    width: 90%;
+    justify-items: stretch;
+    margin: auto;
+}
+
+.detail-container > h1 {
+    color: rgba(47, 110, 181, 1);
+    margin: 1em 0;
+}
+
+.detail-map-container {
+    width: 90%;
+    margin: auto;
+    height: 400px;
+}
+
+/*--------------------------------------------------------------
+Awesome Slideshow
+--------------------------------------------------------------*/
+
+/* Position the image container (needed to position the left and right arrows) */
+.slider-container {
+  position: relative;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+.mySlides > img {
+    height: 60vh;
+    object-fit: cover;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* Container for image text */
+.caption-container {
+  text-align: center;
+  background-color: #222;
+  padding: 2px 16px;
+  color: white;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Six columns side by side */
+.column {
+  float: left;
+  width: 16.66%;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+  opacity: 0.6;
+  height: 10vh;
+  object-fit: cover;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+div.info {
+    background: #FFFFFF;
+    border: 1px solid rgba(47, 110, 181, 0.5);
+    border-radius: 17px;
+    padding: 10px 40px;
+    color: rgba(47, 110, 181, 1);
+}
+
+div.info > h1 {
+    font-size: 3em;
+}
+
+div.info > div {
+    margin-bottom: 1em;
+}
+
+div.info > div > p {
+    margin: 0;
+    color: rgba(125, 125, 125, 1);
+}
+div.info > div > h2 {
+    margin: 0;
+}
+
+.detail-grid > div {
+    margin-bottom: 1em;
+}
+.detail-grid > div > p {
+    margin: 0;
+    color: rgba(125, 125, 125, 1);
+}
+.detail-grid > div > p.price {
+    color: rgba(212, 0, 0, 1);
+    font-size: 2em;
+    font-weight: bold;
+}
+.detail-grid > div > h2 {
+    margin: 0;
+}
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+/*--------------------------------------------------------------
+Footer
+--------------------------------------------------------------*/
+.footer-container {
+    margin-top: 20px;
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
+}
+.footer-distributed{
+	background: #fff;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
+	width: 90%;
+    margin: auto;
+	text-align: left;
+	font: bold 16px sans-serif;
+	padding: 55px 0;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right{
+	display: inline-block;
+	vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left{
+	width: 40%;
+}
+
+/* The company logo */
+
+.footer-distributed h3{
+    color: rgba(47, 110, 181, 1);
+	font: normal 36px 'Open Sans', cursive;
+	margin: 0;
+}
+
+.footer-distributed h3 span{
+	color:  lightseagreen;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links{
+    color: rgba(47, 110, 181, 1);
+	margin: 20px 0 12px;
+	padding: 0;
+}
+
+.footer-distributed .footer-links a{
+	display:inline-block;
+	line-height: 1.8;
+  font-weight:400;
+	text-decoration: none;
+	color:  inherit;
+}
+
+.footer-distributed .footer-company-name{
+	color:  #222;
+	font-size: 14px;
+	font-weight: normal;
+	margin: 0;
+}
+
+/* Footer Center */
+
+.footer-distributed .footer-center{
+	width: 35%;
+}
+
+.footer-distributed .footer-center i{
+	background-color:  #33383b;
+    color: rgba(47, 110, 181, 1);
+	font-size: 25px;
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 42px;
+	margin: 10px 15px;
+	vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope{
+	font-size: 17px;
+	line-height: 38px;
+}
+
+.footer-distributed .footer-center p{
+	display: inline-block;
+    color: rgba(47, 110, 181, 1);
+  font-weight:400;
+	vertical-align: middle;
+	margin:0;
+}
+
+.footer-distributed .footer-center p span{
+	display:block;
+	font-weight: normal;
+	font-size:14px;
+	line-height:2;
+}
+
+.footer-distributed .footer-center p a{
+	color:  lightseagreen;
+	text-decoration: none;;
+}
+
+.footer-distributed .footer-links a:before {
+    content: "|";
+    font-weight:300;
+    font-size: 20px;
+    left: 0;
+    color: rgba(47, 110, 181, 1);
+    display: inline-block;
+    padding-right: 5px;
+}
+
+.footer-distributed .footer-links .link-1:before {
+  content: none;
+}
+
+/* Footer Right */
+
+.footer-distributed .footer-right{
+	width: 20%;
+}
+
+.footer-distributed .footer-company-about{
+	line-height: 20px;
+    color: rgba(47, 110, 181, 1);
+	font-size: 13px;
+	font-weight: normal;
+	margin: 0;
+}
+
+.footer-distributed .footer-company-about span{
+	display: block;
+    color: rgba(47, 110, 181, 1);
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons{
+	margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	cursor: pointer;
+	background-color:  #33383b;
+	border-radius: 2px;
+
+	font-size: 20px;
+    color: rgba(47, 110, 181, 1);
+	text-align: center;
+	line-height: 35px;
+
+	margin-right: 3px;
+	margin-bottom: 5px;
+}
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 880px) {
+
+	.footer-distributed{
+		font: bold 14px sans-serif;
+	}
+
+	.footer-distributed .footer-left,
+	.footer-distributed .footer-center,
+	.footer-distributed .footer-right{
+		display: block;
+		width: 100%;
+		margin-bottom: 40px;
+		text-align: center;
+	}
+
+	.footer-distributed .footer-center i{
+		margin-left: 0;
+	}
+
 }
