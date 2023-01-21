@@ -17,6 +17,7 @@
     <div class='container__content'>
       <form class='container__form' action="{% url 'register' %}" method="POST">
         {% csrf_token %}
+        {% include 'components/_alerts.html' %}
         <input type='text' name='first_name' placeholder='First Name' class='container__inputField'>
         <input type='text' name='last_name' placeholder='Last Name' class='container__inputField'>
         <input type='text' name='username' placeholder='Username' class='container__inputField'>

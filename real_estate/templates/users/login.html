@@ -17,6 +17,7 @@
     <div class='container__content'>
       <form class='container__form' action="{% url 'login' %}" method="POST">
         {% csrf_token %}
+        {% include 'components/_alerts.html' %}
         <input type='text' name='username' placeholder='Username' class='container__inputField'>
         <input type='password' name='password' placeholder='Password' class='container__inputField'>
 
