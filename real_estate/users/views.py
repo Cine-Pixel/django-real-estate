@@ -24,12 +24,21 @@ def login(request: HttpRequest) -> HttpResponse:
 
 def register(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
+        error = False
         first_name = request.POST["first_name"]
         last_name = request.POST["last_name"]
         username = request.POST["username"]
         email = request.POST["email"]
         password = request.POST["password"]
         password2 = request.POST["password2"]
+        if not username:
+            error = True
+            messages.error(request, "The username is required")
+        if not password:
+            error = True
+            messages.error(request, "Password is required")
+        if error:
+            return redirect("register")
 
         if password == password2:
             if User.objects.filter(username=username).exists():

@@ -22,8 +22,27 @@ nav.navbar {
     margin: auto;
 }
 
+.navbar-link {
+    text-decoration: none;
+    cursor: pointer;
+    color: #2F6EB5;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.navbar > .navbar-end {
+    margin-left: auto;
+}
+
+.navbar-btn {
+    padding: 5px 15px;
+    border-radius: 7px;
+    background-color: #2F6EB5;
+    color: #fff;
+}
+
 .navbar > .navbar-title {
-    font-size: 1.6em;
+    font-size: 1.7em;
     color: rgba(47, 110, 181, 1);
 }
 
